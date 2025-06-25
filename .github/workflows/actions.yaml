@@ -6,12 +6,23 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
-        
-      - name: Welcome Message
-        run: echo "My first GitHub Actions Job"
-      
-      - name: List Files
-        run: ls
 
-      - name: Read File
-        run: cat README.md
+      - name: Welcome Message
+        run: |
+          echo "My first GitHub Actions Job"
+          ls
+          cat README.md
+
+      - name: Install Cowsay Program
+        run: sudo apt-get install cowsay -y
+      
+      - name: Generate ASCII Artwork
+        run: cowsay -f dragon "Run for Cover, I am a Dragon." >> dragon.txt
+
+      - name: Printing the dragon.txt file content
+        run: cat dragon.txt
+
+      - name: Run Bash Script
+        run: |
+          sudo chmod +x ascii-script.sh
+          ./ascii-script.sh
